@@ -89,7 +89,12 @@ def update_init(new_version: str) -> None:
         # Find first non-comment, non-import line or end
         insert_idx = 0
         for i, line in enumerate(lines):
-            if line.startswith("#") or line.startswith("from") or line.startswith("import") or not line.strip():
+            if (
+                line.startswith("#")
+                or line.startswith("from")
+                or line.startswith("import")
+                or not line.strip()
+            ):
                 insert_idx = i + 1
             else:
                 break

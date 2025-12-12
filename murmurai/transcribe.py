@@ -10,9 +10,9 @@ from murmurai.alignment import align, load_align_model
 from murmurai.asr import load_model
 from murmurai.audio import load_audio
 from murmurai.diarize import DiarizationPipeline, assign_word_speakers
+from murmurai.log_utils import get_logger
 from murmurai.schema import AlignedTranscriptionResult, TranscriptionResult
 from murmurai.utils import LANGUAGES, TO_LANGUAGE_CODE, get_writer
-from murmurai.log_utils import get_logger
 
 logger = get_logger(__name__)
 

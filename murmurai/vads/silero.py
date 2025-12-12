@@ -1,14 +1,12 @@
 from io import IOBase
 from pathlib import Path
-from typing import Mapping, Text
-from typing import Optional
-from typing import Union
+from typing import Mapping, Optional, Text, Union
 
 import torch
 
 from murmurai.diarize import Segment as SegmentX
-from murmurai.vads.vad import Vad
 from murmurai.log_utils import get_logger
+from murmurai.vads.vad import Vad
 
 logger = get_logger(__name__)
 
@@ -19,15 +17,17 @@ class Silero(Vad):
     # check again default values
     def __init__(self, **kwargs):
         logger.info("Performing voice activity detection using Silero...")
-        super().__init__(kwargs['vad_onset'])
+        super().__init__(kwargs["vad_onset"])
 
-        self.vad_onset = kwargs['vad_onset']
-        self.chunk_size = kwargs['chunk_size']
-        self.vad_pipeline, vad_utils = torch.hub.load(repo_or_dir='snakers4/silero-vad',
-                                                      model='silero_vad',
-                                                      force_reload=False,
-                                                      onnx=False,
-                                                      trust_repo=True)
+        self.vad_onset = kwargs["vad_onset"]
+        self.chunk_size = kwargs["chunk_size"]
+        self.vad_pipeline, vad_utils = torch.hub.load(
+            repo_or_dir="snakers4/silero-vad",
+            model="silero_vad",
+            force_reload=False,
+            onnx=False,
+            trust_repo=True,
+        )
         (self.get_speech_timestamps, _, self.read_audio, _, _) = vad_utils
 
     def __call__(self, audio: AudioFile, **kwargs):
@@ -39,28 +39,33 @@ class Silero(Vad):
         if sample_rate != 16000:
             raise ValueError("Only 16000Hz sample rate is allowed")
 
-        timestamps = self.get_speech_timestamps(audio["waveform"],
-                                                model=self.vad_pipeline,
-                                                sampling_rate=sample_rate,
-                                                max_speech_duration_s=self.chunk_size,
-                                                threshold=self.vad_onset
-                                                # min_silence_duration_ms = self.min_duration_off/1000
-                                                # min_speech_duration_ms = self.min_duration_on/1000
-                                                # ...
-                                                # See silero documentation for full option list
-                                                )
-        return [SegmentX(i['start'] / sample_rate, i['end'] / sample_rate, "UNKNOWN") for i in timestamps]
+        timestamps = self.get_speech_timestamps(
+            audio["waveform"],
+            model=self.vad_pipeline,
+            sampling_rate=sample_rate,
+            max_speech_duration_s=self.chunk_size,
+            threshold=self.vad_onset,
+            # min_silence_duration_ms = self.min_duration_off/1000
+            # min_speech_duration_ms = self.min_duration_on/1000
+            # ...
+            # See silero documentation for full option list
+        )
+        return [
+            SegmentX(i["start"] / sample_rate, i["end"] / sample_rate, "UNKNOWN")
+            for i in timestamps
+        ]
 
     @staticmethod
     def preprocess_audio(audio):
         return audio
 
     @staticmethod
-    def merge_chunks(segments_list,
-                     chunk_size,
-                     onset: float = 0.5,
-                     offset: Optional[float] = None,
-                     ):
+    def merge_chunks(
+        segments_list,
+        chunk_size,
+        onset: float = 0.5,
+        offset: Optional[float] = None,
+    ):
         assert chunk_size > 0
         if len(segments_list) == 0:
             logger.warning("No active speech found in audio")

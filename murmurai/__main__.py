@@ -4,9 +4,8 @@ import platform
 
 import torch
 
-from murmurai.utils import (LANGUAGES, TO_LANGUAGE_CODE, optional_float,
-                            optional_int, str2bool)
 from murmurai.log_utils import setup_logging
+from murmurai.utils import LANGUAGES, TO_LANGUAGE_CODE, optional_float, optional_int, str2bool
 
 
 def cli():
