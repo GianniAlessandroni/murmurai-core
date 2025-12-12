@@ -74,7 +74,7 @@ result = murmurai.assign_word_speakers(diarize_segments, result)
 ### CLI
 
 ```bash
-murmurai audio.mp3 --model large-v3-turbo --diarize --hf_token YOUR_TOKEN
+murmurai-core audio.mp3 --model large-v3-turbo --diarize --hf_token YOUR_TOKEN
 ```
 
 ## Requirements

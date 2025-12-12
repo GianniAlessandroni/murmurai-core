@@ -29,7 +29,7 @@ Documentation = "https://github.com/namastexlabs/murmurai#readme"
 Issues = "https://github.com/namastexlabs/murmurai/issues"
 
 [project.scripts]
-murmurai = "murmurai.__main__:cli"
+murmurai-core = "murmurai.__main__:cli"
 
 [project.optional-dependencies]
 triton = ["triton>=3.3.0; sys_platform == 'linux' and platform_machine == 'x86_64'"]
