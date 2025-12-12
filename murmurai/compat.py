@@ -57,7 +57,7 @@ except ImportError:
     pass
 
 if _patched_modules:
-    print(f"[murmurai] Patched torch 2.6+ compatibility: {', '.join(_patched_modules)}")
+    pass  # Patches applied silently
 
 # =============================================================================
 # PATCH 2: Pyannote 4.x compatibility (use_auth_token -> token)
@@ -135,7 +135,7 @@ except (ImportError, AttributeError):
     pass
 
 if any("pyannote" in m for m in _patched_modules):
-    print("[murmurai] Patched pyannote 4.x compatibility (use_auth_token -> token)")
+    pass  # Patches applied silently
 
 # =============================================================================
 # PATCH 3: Torchaudio 2.9+ compatibility (list_audio_backends removed)
@@ -146,4 +146,3 @@ import torchaudio
 
 if not hasattr(torchaudio, "list_audio_backends"):
     torchaudio.list_audio_backends = lambda: []
-    print("[murmurai] Patched torchaudio 2.9+ compatibility (list_audio_backends)")
