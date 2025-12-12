@@ -13,6 +13,7 @@ keywords = ["whisper", "speech-recognition", "transcription", "diarization", "as
 dependencies = [
     "ctranslate2>=4.5.0",
     "faster-whisper>=1.1.1",
+    "imageio-ffmpeg>=0.4.9",
     "nltk>=3.9.1",
     "numpy>=2.1.0,<2.3.0",
     "omegaconf>=2.3.0",

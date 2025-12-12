@@ -9,6 +9,13 @@ import torch.nn.functional as F
 
 from murmurai.utils import exact_div
 
+# Get ffmpeg path from imageio-ffmpeg (bundled binary)
+try:
+    from imageio_ffmpeg import get_ffmpeg_exe
+    FFMPEG_PATH = get_ffmpeg_exe()
+except ImportError:
+    FFMPEG_PATH = "ffmpeg"  # Fallback to system ffmpeg
+
 # hard-coded audio hyperparameters
 SAMPLE_RATE = 16000
 N_FFT = 400
@@ -42,7 +49,7 @@ def load_audio(file: str, sr: int = SAMPLE_RATE) -> np.ndarray:
         # Launches a subprocess to decode audio while down-mixing and resampling as necessary.
         # Requires the ffmpeg CLI to be installed.
         cmd = [
-            "ffmpeg",
+            FFMPEG_PATH,
             "-nostdin",
             "-threads",
             "0",
