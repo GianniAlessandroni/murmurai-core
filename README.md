@@ -108,5 +108,5 @@ MurmurAI builds on the excellent work of:
 ---
 
 <p align="center">
-  Made with care by <a href="https://github.com/namastexlabs">Namastex Labs</a>
+  Made with ❤️ by <a href="https://github.com/namastexlabs">Namastex Labs</a>
 </p>
