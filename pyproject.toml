@@ -10,6 +10,18 @@ authors = [
     {name = "Namastex Labs"}
 ]
 keywords = ["whisper", "speech-recognition", "transcription", "diarization", "asr", "murmur"]
+dependencies = [
+    "ctranslate2>=4.5.0",
+    "faster-whisper>=1.1.1",
+    "nltk>=3.9.1",
+    "numpy>=2.1.0,<2.3.0",
+    "pandas>=2.2.3,<2.3.0",
+    "av<16.0.0",
+    "pyannote-audio>=4.0",
+    "torch>=2.8.0",
+    "torchaudio>=2.8.0",
+    "transformers>=4.48.0",
+]
 
 [project.urls]
 Repository = "https://github.com/namastexlabs/murmurai"
@@ -18,18 +30,6 @@ Issues = "https://github.com/namastexlabs/murmurai/issues"
 
 [project.scripts]
 murmurai = "murmurai.__main__:cli"
-
-[project.dependencies]
-ctranslate2 = ">=4.5.0"
-faster-whisper = ">=1.1.1"
-nltk = ">=3.9.1"
-numpy = ">=2.1.0,<2.3.0"
-pandas = ">=2.2.3,<2.3.0"
-av = "<16.0.0"
-pyannote-audio = ">=4.0"
-torch = ">=2.8.0"
-torchaudio = ">=2.8.0"
-transformers = ">=4.48.0"
 
 [project.optional-dependencies]
 triton = ["triton>=3.3.0; sys_platform == 'linux' and platform_machine == 'x86_64'"]
