@@ -13,9 +13,9 @@ import torch
 import torchaudio
 from transformers import Wav2Vec2ForCTC, Wav2Vec2Processor
 
-from whisperx.audio import SAMPLE_RATE, load_audio
-from whisperx.utils import interpolate_nans, PUNKT_LANGUAGES
-from whisperx.schema import (
+from murmurai.audio import SAMPLE_RATE, load_audio
+from murmurai.utils import interpolate_nans, PUNKT_LANGUAGES
+from murmurai.schema import (
     AlignedTranscriptionResult,
     SingleSegment,
     SingleAlignedSegment,
@@ -24,7 +24,7 @@ from whisperx.schema import (
 )
 import nltk
 from nltk.data import load as nltk_load
-from whisperx.log_utils import get_logger
+from murmurai.log_utils import get_logger
 
 logger = get_logger(__name__)
 

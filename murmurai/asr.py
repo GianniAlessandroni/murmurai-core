@@ -11,10 +11,10 @@ from faster_whisper.transcribe import TranscriptionOptions, get_ctranslate2_stor
 from transformers import Pipeline
 from transformers.pipelines.pt_utils import PipelineIterator
 
-from whisperx.audio import N_SAMPLES, SAMPLE_RATE, load_audio, log_mel_spectrogram
-from whisperx.schema import SingleSegment, TranscriptionResult
-from whisperx.vads import Vad, Silero, Pyannote
-from whisperx.log_utils import get_logger
+from murmurai.audio import N_SAMPLES, SAMPLE_RATE, load_audio, log_mel_spectrogram
+from murmurai.schema import SingleSegment, TranscriptionResult
+from murmurai.vads import Vad, Silero, Pyannote
+from murmurai.log_utils import get_logger
 
 logger = get_logger(__name__)
 

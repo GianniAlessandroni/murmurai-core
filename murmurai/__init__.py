@@ -1,12 +1,14 @@
 # Load compatibility patches FIRST before any other imports
 # This patches torch 2.6+, pyannote 4.x, torchaudio 2.9+
-from whisperx import compat as _compat  # noqa: F401
+from murmurai import compat as _compat  # noqa: F401
+
+__version__ = "1.0.0"
 
 import importlib
 
 
 def _lazy_import(name):
-    module = importlib.import_module(f"whisperx.{name}")
+    module = importlib.import_module(f"murmurai.{name}")
     return module
 
 
@@ -37,7 +39,7 @@ def assign_word_speakers(*args, **kwargs):
 
 def setup_logging(*args, **kwargs):
     """
-    Configure logging for WhisperX.
+    Configure logging for MurmurAI.
 
     Args:
         level: Logging level (debug, info, warning, error, critical). Default: warning
@@ -55,7 +57,7 @@ def get_logger(*args, **kwargs):
         name: Logger name (typically __name__ from calling module)
 
     Returns:
-        Logger instance configured with WhisperX settings
+        Logger instance configured with MurmurAI settings
     """
     logging_module = _lazy_import("log_utils")
     return logging_module.get_logger(*args, **kwargs)

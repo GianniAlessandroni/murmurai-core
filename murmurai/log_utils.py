@@ -11,13 +11,13 @@ def setup_logging(
     log_file: Optional[str] = None,
 ) -> None:
     """
-    Configure logging for WhisperX.
+    Configure logging for MurmurAI.
 
     Args:
         level: Logging level (debug, info, warning, error, critical). Default: info
         log_file: Optional path to log file. If None, logs only to console.
     """
-    logger = logging.getLogger("whisperx")
+    logger = logging.getLogger("murmurai")
 
     logger.handlers.clear()
 
@@ -57,11 +57,11 @@ def get_logger(name: str) -> logging.Logger:
         name: Logger name (typically __name__ from calling module)
 
     Returns:
-        Logger instance configured with WhisperX settings
+        Logger instance configured with MurmurAI settings
     """
-    whisperx_logger = logging.getLogger("whisperx")
-    if not whisperx_logger.handlers:
+    murmurai_logger = logging.getLogger("murmurai")
+    if not murmurai_logger.handlers:
         setup_logging()
 
-    logger_name = "whisperx" if name == "__main__" else name
+    logger_name = "murmurai" if name == "__main__" else name
     return logging.getLogger(logger_name)

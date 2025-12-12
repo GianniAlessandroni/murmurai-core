@@ -1,41 +1,56 @@
 [project]
-urls = { repository = "https://github.com/namastexlabs/whisperX" }
-authors = [{ name = "Max Bain" }, { name = "Namastex Labs" }]
-name = "whisperx"
-version = "3.7.4+namastex.1"
-description = "Time-Accurate Automatic Speech Recognition using Whisper. (Namastex fork with pyannote 4.x support)"
+name = "murmurai"
+version = "1.0.0"
+description = "Modern speech recognition with word-level timestamps and speaker diarization. Fork of whisperX with torch 2.6+, pyannote 4.x compatibility."
 readme = "README.md"
-requires-python = ">=3.12, <3.14"
-license = { text = "BSD-2-Clause" }
-
-dependencies = [
-    "ctranslate2>=4.5.0",
-    "faster-whisper>=1.1.1",
-    "nltk>=3.9.1",
-    "numpy>=2.1.0,<2.3.0",
-    "pandas>=2.2.3,<2.3.0",
-    "av<16.0.0",
-    # Modernized: pyannote 4.x, torch 2.8+, torchaudio 2.8+
-    "pyannote-audio>=4.0",
-    "torch>=2.8.0",
-    "torchaudio>=2.8.0",
-    "transformers>=4.48.0",
-    "triton>=3.3.0; sys_platform == 'linux' and platform_machine == 'x86_64'"
+requires-python = ">=3.9, <3.14"
+license = {text = "BSD-2-Clause"}
+authors = [
+    {name = "Felipe Rosa"},
+    {name = "Namastex Labs"}
 ]
+keywords = ["whisper", "speech-recognition", "transcription", "diarization", "asr", "murmur"]
 
+[project.urls]
+Repository = "https://github.com/namastexlabs/murmurai"
+Documentation = "https://github.com/namastexlabs/murmurai#readme"
+Issues = "https://github.com/namastexlabs/murmurai/issues"
 
 [project.scripts]
-whisperx = "whisperx.__main__:cli"
+murmurai = "murmurai.__main__:cli"
+
+[project.dependencies]
+ctranslate2 = ">=4.5.0"
+faster-whisper = ">=1.1.1"
+nltk = ">=3.9.1"
+numpy = ">=2.1.0,<2.3.0"
+pandas = ">=2.2.3,<2.3.0"
+av = "<16.0.0"
+pyannote-audio = ">=4.0"
+torch = ">=2.8.0"
+torchaudio = ">=2.8.0"
+transformers = ">=4.48.0"
+
+[project.optional-dependencies]
+triton = ["triton>=3.3.0; sys_platform == 'linux' and platform_machine == 'x86_64'"]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.8",
+    "pytest>=8.0",
+]
 
 [build-system]
-requires = ["setuptools"]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.setuptools]
-include-package-data = true
+[tool.hatch.build.targets.wheel]
+packages = ["murmurai"]
 
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["whisperx*"]
+[tool.ruff]
+target-version = "py39"
+line-length = 100
 
-# Note: uv index configuration removed - parent project (whisperx-api) provides index config
-# This allows the fork to be used as a dependency without index conflicts
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = ["E501"]

@@ -5,7 +5,7 @@ This module provides patches for:
 2. Pyannote 4.x use_auth_token -> token rename
 3. Torchaudio 2.9+ list_audio_backends removal
 
-These patches are applied at import time before any other whisperx imports.
+These patches are applied at import time before any other murmurai imports.
 """
 
 import warnings
@@ -57,12 +57,12 @@ except ImportError:
     pass
 
 if _patched_modules:
-    print(f"[whisperx] Patched torch 2.6+ compatibility: {', '.join(_patched_modules)}")
+    print(f"[murmurai] Patched torch 2.6+ compatibility: {', '.join(_patched_modules)}")
 
 # =============================================================================
 # PATCH 2: Pyannote 4.x compatibility (use_auth_token -> token)
 # =============================================================================
-# whisperx uses `use_auth_token` parameter, but pyannote 4.x renamed it to `token`.
+# murmurai uses `use_auth_token` parameter, but pyannote 4.x renamed it to `token`.
 # =============================================================================
 try:
     from pyannote.audio.pipelines import voice_activity_detection as vad_module
@@ -135,7 +135,7 @@ except (ImportError, AttributeError):
     pass
 
 if any("pyannote" in m for m in _patched_modules):
-    print("[whisperx] Patched pyannote 4.x compatibility (use_auth_token -> token)")
+    print("[murmurai] Patched pyannote 4.x compatibility (use_auth_token -> token)")
 
 # =============================================================================
 # PATCH 3: Torchaudio 2.9+ compatibility (list_audio_backends removed)
@@ -146,4 +146,4 @@ import torchaudio
 
 if not hasattr(torchaudio, "list_audio_backends"):
     torchaudio.list_audio_backends = lambda: []
-    print("[whisperx] Patched torchaudio 2.9+ compatibility (list_audio_backends)")
+    print("[murmurai] Patched torchaudio 2.9+ compatibility (list_audio_backends)")

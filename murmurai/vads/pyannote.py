@@ -11,9 +11,9 @@ from pyannote.audio.pipelines.utils import PipelineModel
 from pyannote.core import Annotation, SlidingWindowFeature
 from pyannote.core import Segment
 
-from whisperx.diarize import Segment as SegmentX
-from whisperx.vads.vad import Vad
-from whisperx.log_utils import get_logger
+from murmurai.diarize import Segment as SegmentX
+from murmurai.vads.vad import Vad
+from murmurai.log_utils import get_logger
 
 logger = get_logger(__name__)
 
@@ -77,7 +77,7 @@ class Binarize:
     Gregory Gelly and Jean-Luc Gauvain. "Minimum Word Error Training of
     RNN-based Voice Activity Detection", InterSpeech 2015.
 
-    Modified by Max Bain to include WhisperX's min-cut operation
+    Modified by Max Bain to include MurmurAI's min-cut operation
     https://arxiv.org/abs/2303.00747
 
     Pyannote-audio

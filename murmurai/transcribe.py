@@ -6,13 +6,13 @@ import warnings
 import numpy as np
 import torch
 
-from whisperx.alignment import align, load_align_model
-from whisperx.asr import load_model
-from whisperx.audio import load_audio
-from whisperx.diarize import DiarizationPipeline, assign_word_speakers
-from whisperx.schema import AlignedTranscriptionResult, TranscriptionResult
-from whisperx.utils import LANGUAGES, TO_LANGUAGE_CODE, get_writer
-from whisperx.log_utils import get_logger
+from murmurai.alignment import align, load_align_model
+from murmurai.asr import load_model
+from murmurai.audio import load_audio
+from murmurai.diarize import DiarizationPipeline, assign_word_speakers
+from murmurai.schema import AlignedTranscriptionResult, TranscriptionResult
+from murmurai.utils import LANGUAGES, TO_LANGUAGE_CODE, get_writer
+from murmurai.log_utils import get_logger
 
 logger = get_logger(__name__)
 
