@@ -73,9 +73,43 @@ result = murmurai.assign_word_speakers(diarize_segments, result)
 
 ### CLI
 
+**Basic transcription:**
 ```bash
-murmurai-core audio.mp3 --model large-v3-turbo --diarize --hf_token YOUR_TOKEN
+murmurai-core audio.mp3
 ```
+
+**With specific model and language:**
+```bash
+murmurai-core audio.mp3 --model large-v3-turbo --language en
+```
+
+**With speaker diarization:**
+```bash
+murmurai-core audio.mp3 --model large-v3-turbo --diarize --hf_token YOUR_HF_TOKEN
+```
+
+**Output to specific format and directory:**
+```bash
+murmurai-core audio.mp3 --output_format srt --output_dir ./transcripts
+```
+
+**Run without installing (via uvx):**
+```bash
+uvx murmurai-core audio.mp3 --model large-v3-turbo
+```
+
+**Common options:**
+| Option | Description | Default |
+|--------|-------------|---------|
+| `--model` | Whisper model (`tiny`, `base`, `small`, `medium`, `large-v3`, `large-v3-turbo`) | `small` |
+| `--language` | Audio language (e.g., `en`, `pt`, `es`, `fr`) | auto-detect |
+| `--device` | `cuda` or `cpu` | `cuda` |
+| `--output_format` | `srt`, `vtt`, `txt`, `tsv`, `json`, `all` | `all` |
+| `--output_dir` | Output directory | `.` |
+| `--diarize` | Enable speaker diarization | off |
+| `--hf_token` | HuggingFace token (required for diarization) | - |
+| `--batch_size` | Batch size for inference | `8` |
+| `--compute_type` | `float16`, `float32`, `int8` | `float16` |
 
 ## Requirements
 
