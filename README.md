@@ -11,7 +11,7 @@
   <a href="https://github.com/namastexlabs/murmurai/actions/workflows/ci.yml">
     <img src="https://img.shields.io/github/actions/workflow/status/namastexlabs/murmurai/ci.yml?style=flat-square" alt="CI">
   </a>
-  <img src="https://img.shields.io/badge/python-3.9--3.13-blue?style=flat-square" alt="Python">
+  <img src="https://img.shields.io/badge/python-3.10--3.13-blue?style=flat-square" alt="Python">
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/license-BSD--2--Clause-green?style=flat-square" alt="License">
   </a>
@@ -24,7 +24,7 @@ MurmurAI is a fork of [WhisperX](https://github.com/m-bain/whisperX) with modern
 - **PyTorch 2.6+** compatibility (weights_only patches)
 - **Pyannote 4.x** support (token parameter migration)
 - **Torchaudio 2.9+** compatibility (audio backend fixes)
-- **Python 3.9-3.13** tested
+- **Python 3.10-3.13** tested
 
 ## Features
 

@@ -3,7 +3,7 @@ name = "murmurai"
 version = "1.0.0"
 description = "Modern speech recognition with word-level timestamps and speaker diarization. Fork of whisperX with torch 2.6+, pyannote 4.x compatibility."
 readme = "README.md"
-requires-python = ">=3.9, <3.14"
+requires-python = ">=3.10, <3.14"
 license = {text = "BSD-2-Clause"}
 authors = [
     {name = "Felipe Rosa"},
@@ -48,7 +48,7 @@ build-backend = "hatchling.build"
 packages = ["murmurai"]
 
 [tool.ruff]
-target-version = "py39"
+target-version = "py310"
 line-length = 100
 
 [tool.ruff.lint]
