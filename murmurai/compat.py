@@ -1,12 +1,60 @@
 """Compatibility patches for modern PyTorch/pyannote/torchaudio.
 
 This module provides patches for:
+0. cuDNN library path configuration (for isolated environments like uvx)
 1. Torch 2.6+ weights_only default change
 2. Pyannote 4.x use_auth_token -> token rename
 3. Torchaudio 2.9+ list_audio_backends removal
 
 These patches are applied at import time before any other murmurai imports.
 """
+
+import os
+
+# =============================================================================
+# PATCH 0: cuDNN library path configuration (MUST be before torch import)
+# =============================================================================
+# In isolated environments (uvx, fresh venvs), LD_LIBRARY_PATH may not include
+# the nvidia.cudnn package's lib directory. This causes "Unable to load libcudnn"
+# errors even when cudnn is installed via pip.
+# We set LD_LIBRARY_PATH AND preload via ctypes for maximum compatibility.
+# =============================================================================
+import ctypes
+import glob
+
+def _setup_nvidia_libs():
+    """Configure nvidia library paths for isolated environments."""
+    nvidia_libs = []
+
+    # Find nvidia package lib directories
+    for pkg in ["nvidia.cudnn", "nvidia.cublas", "nvidia.cuda_runtime", "nvidia.nvjitlink"]:
+        try:
+            mod = __import__(pkg, fromlist=[""])
+            lib_path = os.path.join(mod.__path__[0], "lib")
+            if os.path.isdir(lib_path):
+                nvidia_libs.append(lib_path)
+        except ImportError:
+            continue
+
+    if not nvidia_libs:
+        return
+
+    # Update LD_LIBRARY_PATH for subprocess calls
+    current_ld_path = os.environ.get("LD_LIBRARY_PATH", "")
+    new_paths = [p for p in nvidia_libs if p not in current_ld_path]
+    if new_paths:
+        os.environ["LD_LIBRARY_PATH"] = ":".join(new_paths + ([current_ld_path] if current_ld_path else []))
+
+    # Preload cudnn libraries via ctypes (for current process)
+    for lib_dir in nvidia_libs:
+        for pattern in ["libcudnn*.so*", "libcublas*.so*", "libnvJitLink*.so*"]:
+            for lib_file in sorted(glob.glob(os.path.join(lib_dir, pattern))):
+                try:
+                    ctypes.CDLL(lib_file, mode=ctypes.RTLD_GLOBAL)
+                except OSError:
+                    continue
+
+_setup_nvidia_libs()
 
 import warnings
 

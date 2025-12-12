@@ -16,6 +16,7 @@ dependencies = [
     "imageio-ffmpeg>=0.4.9",
     "nltk>=3.9.1",
     "numpy>=2.1.0,<2.3.0",
+    "nvidia-cudnn-cu12>=9.1.0; sys_platform == 'linux'",
     "omegaconf>=2.3.0",
     "pandas>=2.2.3,<2.3.0",
     "av<16.0.0",
