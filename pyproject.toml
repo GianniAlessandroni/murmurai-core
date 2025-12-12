@@ -1,5 +1,5 @@
 [project]
-name = "murmurai"
+name = "murmurai-core"
 version = "1.0.0"
 description = "Modern speech recognition with word-level timestamps and speaker diarization. Fork of whisperX with torch 2.6+, pyannote 4.x compatibility."
 readme = "README.md"

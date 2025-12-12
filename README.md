@@ -5,8 +5,8 @@
 </p>
 
 <p align="center">
-  <a href="https://pypi.org/project/murmurai/">
-    <img src="https://img.shields.io/pypi/v/murmurai?style=flat-square&color=00D9FF" alt="PyPI">
+  <a href="https://pypi.org/project/murmurai-core/">
+    <img src="https://img.shields.io/pypi/v/murmurai-core?style=flat-square&color=00D9FF" alt="PyPI">
   </a>
   <a href="https://github.com/namastexlabs/murmurai/actions/workflows/ci.yml">
     <img src="https://img.shields.io/github/actions/workflow/status/namastexlabs/murmurai/ci.yml?style=flat-square" alt="CI">
@@ -37,13 +37,13 @@ MurmurAI is a fork of [WhisperX](https://github.com/m-bain/whisperX) with modern
 ## Installation
 
 ```bash
-pip install murmurai
+pip install murmurai-core
 ```
 
 Or with uv:
 
 ```bash
-uv add murmurai
+uv add murmurai-core
 ```
 
 ## Quick Start
