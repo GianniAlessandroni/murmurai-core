@@ -21,9 +21,9 @@ dependencies = [
     "pandas>=2.2.3,<2.3.0",
     "av<16.0.0",
     "pyannote-audio>=4.0",
-    "torch>=2.8.0",
-    "torchaudio>=2.8.0",
-    "transformers>=4.48.0",
+    "torch>=2.9.0",
+    "torchaudio>=2.9.0",
+    "transformers>=4.50.0",
 ]
 
 [project.urls]
@@ -57,3 +57,16 @@ line-length = 100
 [tool.ruff.lint]
 select = ["E", "F", "I"]
 ignore = ["E501", "E402", "F841"]
+
+[tool.uv]
+managed = true
+index-strategy = "unsafe-best-match"
+
+[tool.uv.sources]
+torch = {index = "pytorch"}
+torchaudio = {index = "pytorch"}
+
+[[tool.uv.index]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cu128"
+priority = "supplemental"
