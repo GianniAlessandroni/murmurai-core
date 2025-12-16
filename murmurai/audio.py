@@ -12,6 +12,7 @@ from murmurai.utils import exact_div
 # Get ffmpeg path from imageio-ffmpeg (bundled binary)
 try:
     from imageio_ffmpeg import get_ffmpeg_exe
+
     FFMPEG_PATH = get_ffmpeg_exe()
 except ImportError:
     FFMPEG_PATH = "ffmpeg"  # Fallback to system ffmpeg

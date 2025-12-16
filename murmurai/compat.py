@@ -9,6 +9,8 @@ This module provides patches for:
 These patches are applied at import time before any other murmurai imports.
 """
 
+import ctypes
+import glob
 import os
 
 # =============================================================================
@@ -19,8 +21,7 @@ import os
 # errors even when cudnn is installed via pip.
 # We set LD_LIBRARY_PATH AND preload via ctypes for maximum compatibility.
 # =============================================================================
-import ctypes
-import glob
+
 
 def _setup_nvidia_libs():
     """Configure nvidia library paths for isolated environments."""
@@ -43,7 +44,9 @@ def _setup_nvidia_libs():
     current_ld_path = os.environ.get("LD_LIBRARY_PATH", "")
     new_paths = [p for p in nvidia_libs if p not in current_ld_path]
     if new_paths:
-        os.environ["LD_LIBRARY_PATH"] = ":".join(new_paths + ([current_ld_path] if current_ld_path else []))
+        os.environ["LD_LIBRARY_PATH"] = ":".join(
+            new_paths + ([current_ld_path] if current_ld_path else [])
+        )
 
     # Preload cudnn libraries via ctypes (for current process)
     for lib_dir in nvidia_libs:
@@ -53,6 +56,7 @@ def _setup_nvidia_libs():
                     ctypes.CDLL(lib_file, mode=ctypes.RTLD_GLOBAL)
                 except OSError:
                     continue
+
 
 _setup_nvidia_libs()
 
