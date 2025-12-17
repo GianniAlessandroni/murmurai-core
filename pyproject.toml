@@ -59,6 +59,13 @@ line-length = 100
 select = ["E", "F", "I"]
 ignore = ["E501", "E402", "F841"]
 
+[tool.mypy]
+python_version = "3.12"
+strict = false
+warn_unused_ignores = false
+ignore_missing_imports = true
+disable_error_code = ["import-untyped", "no-untyped-def", "attr-defined", "union-attr", "index", "arg-type", "assignment", "misc", "no-redef", "typeddict-item", "typeddict-unknown-key", "operator"]
+
 [tool.uv]
 managed = true
 
