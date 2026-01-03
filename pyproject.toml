@@ -21,10 +21,11 @@ dependencies = [
     "pandas>=2.2.3,<2.3.0",
     "av<16.0.0",
     "pyannote-audio>=4.0",
-    "torch>=2.9.0",
-    "torchaudio>=2.9.0",
+    "torch==2.8.0",
+    "torchaudio==2.8.0",
     "torchcodec>=0.8.1",
     "transformers>=4.50.0",
+    "speechbrain"==1.0.3",
 ]
 
 [project.urls]
