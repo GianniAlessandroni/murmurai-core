@@ -72,9 +72,21 @@ class DiarizationPipeline:
             )
             embeddings = None
 
-        diarize_df = pd.DataFrame(
-            diarization.itertracks(yield_label=True), columns=["segment", "label", "speaker"]
-        )
+
+        #diarize_df = pd.DataFrame(
+        #    diarization.itertracks(yield_label=True), columns=["segment", "label", "speaker"]
+        #)
+        rows = []
+        for segment, speaker in diarization.speaker_diarization:
+            rows.append({
+                "segment": segment,
+                "speaker": speaker,
+                "start": segment.start,
+                "end": segment.end,
+            })
+
+        diarize_df = pd.DataFrame(rows)
+
         diarize_df["start"] = diarize_df["segment"].apply(lambda x: x.start)
         diarize_df["end"] = diarize_df["segment"].apply(lambda x: x.end)
 

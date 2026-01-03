@@ -114,6 +114,7 @@ uvx murmurai-core audio.mp3 --model large-v3-turbo
 | `--hf_token` | HuggingFace token (required for diarization) | - |
 | `--batch_size` | Batch size for inference | `8` |
 | `--compute_type` | `float16`, `float32`, `int8` | `float16` |
+| `--diarize_model` | Pyannote model (`pyannote/speaker-diarization-3.1`, `pyannote/speaker-diarization-community-1`) | `pyannote/speaker-diarization-3.1` |
 
 ## Requirements
 
